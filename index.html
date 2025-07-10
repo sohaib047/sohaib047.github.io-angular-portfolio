@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohaib Ali | Angular Frontend Developer</title>
+    <!-- Chosen Palette: Light & Vibrant Purple -->
+    <!-- Application Structure Plan: A clean, single-column layout with a sticky top navigation bar. The structure prioritizes a top-down narrative: 1) A bold hero section establishing the Angular Developer identity. 2) A "What I Build" section with icon-based cards for key skill areas. 3) A comprehensive, filterable project gallery as the main showcase. 4) A restyled, minimalist career timeline. 5) A simple contact section. This linear flow is intuitive and guides the recruiter through a story of skills, projects, and experience, with the interactive project filter being the core exploratory element. -->
+    <!-- Visualization & Content Choices: 
+        - Projects -> Goal: Showcase & Organize -> Viz: A responsive, filterable grid of project cards with hover effects. Interaction: Users can click filter buttons ('Angular', 'Full-Stack', 'Node.js') to instantly view relevant work. Justification: This is the most effective way to present a large number of projects while allowing recruiters to focus on their specific needs.
+        - Skills -> Goal: Inform/Organize -> Viz: Icon-based feature cards. Interaction: Subtle hover animations. Justification: Provides a high-level, visually appealing summary of capabilities without getting bogged down in percentages, which feels more modern for a frontend portfolio.
+        - Experience -> Goal: Show Progression -> Viz: A minimalist vertical timeline with distinct styling. Justification: Cleanly presents career history without cluttering the page.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+        }
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #8B5CF6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #8B5CF6;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .project-filter-btn.active {
+            background-color: #8B5CF6;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900">Sohaib Ali</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#expertise" class="nav-link text-gray-600 font-medium">Expertise</a>
+                <a href="#projects" class="nav-link text-gray-600 font-medium">Projects</a>
+                <a href="#experience" class="nav-link text-gray-600 font-medium">Experience</a>
+                <a href="mailto:sohaibali9243@gmail.com" class="bg-violet-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-violet-600 transition-colors">Contact Me</a>
+            </div>
+             <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <span class="text-2xl">☰</span>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <a href="#expertise" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Expertise</a>
+            <a href="#projects" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Projects</a>
+            <a href="#experience" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Experience</a>
+            <a href="mailto:sohaibali9243@gmail.com" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Contact Me</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Hero Section -->
+        <section id="about" class="text-center py-24 md:py-32">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+                Frontend Developer Crafting<br>
+                <span class="text-violet-500">Dynamic User Experiences</span> with Angular.
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-600">
+                A skilled and versatile developer with a master’s in computer science and over a year of intensive, hands-on experience designing and implementing user interfaces with Angular. Dedicated to writing clean, efficient code and delivering high-quality, responsive solutions.
+            </p>
+            <div class="mt-8 flex justify-center items-center space-x-4">
+                <a href="https://linkedin.com/in/sohaib-ali-940340177" target="_blank" class="text-gray-500 hover:text-violet-500 transition-colors">LinkedIn</a>
+                <span class="text-gray-300">/</span>
+                <a href="https://github.com/sohaib047" target="_blank" class="text-gray-500 hover:text-violet-500 transition-colors">GitHub</a>
+                 <span class="text-gray-300">/</span>
+                <p class="font-semibold text-gray-600">Glasgow, UK</p>
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What I Build</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-600">I specialize in turning complex requirements into intuitive and performant web applications.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-gray-50 p-8 rounded-xl fade-in-up">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold mb-2">Responsive UIs</h3>
+                    <p class="text-gray-600">Crafting pixel-perfect, responsive user interfaces with Angular, TypeScript, HTML5, and CSS3 that work flawlessly on any device.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl fade-in-up" style="transition-delay: 150ms;">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">API Integration</h3>
+                    <p class="text-gray-600">Seamlessly integrating frontend components with backend services via RESTful APIs for a cohesive full-stack experience.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl fade-in-up" style="transition-delay: 300ms;">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-2">Performance Optimization</h3>
+                    <p class="text-gray-600">Analyzing and enhancing application performance, ensuring fast load times, smooth animations, and efficient data flow.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">My Work</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-600">A collection of projects I've developed. Filter by category to see my experience with different technologies.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button class="project-filter-btn active py-2 px-5 rounded-full text-sm font-semibold bg-gray-100 text-gray-800 transition-all duration-300" data-filter="all">All (9)</button>
+                <button class="project-filter-btn py-2 px-5 rounded-full text-sm font-semibold bg-gray-100 text-gray-800 transition-all duration-300" data-filter="angular">Angular</button>
+                <button class="project-filter-btn py-2 px-5 rounded-full text-sm font-semibold bg-gray-100 text-gray-800 transition-all duration-300" data-filter="full-stack">Full-Stack</button>
+                <button class="project-filter-btn py-2 px-5 rounded-full text-sm font-semibold bg-gray-100 text-gray-800 transition-all duration-300" data-filter="node.js">Node.js</button>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be populated here by JS -->
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-16 md:py-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Career Path</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-600">My professional journey in software development.</p>
+            </div>
+            <div class="relative max-w-2xl mx-auto">
+                <!-- Timeline items will be populated here by JS -->
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="border-t border-gray-200">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h3 class="text-2xl font-bold">Interested in collaborating?</h3>
+            <p class="mt-2 text-gray-600">I'm always open to discussing new projects and opportunities.</p>
+            <a href="mailto:sohaibali9243@gmail.com" class="mt-6 inline-block bg-violet-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-violet-600 transition-colors">Let's Talk</a>
+            <p class="mt-8 text-sm text-gray-500 font-mono">&copy; 2024 Sohaib Ali</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- DATA ---
+        const projectsData = [
+            {
+                title: 'Virtual Hospital System',
+                description: 'Built from the ground up with role-based access control, enabling secure interactions between Admins, Physicians, and Patients.',
+                tags: ['angular', 'full-stack'],
+                tech: ['Angular', 'CI/CD', 'Project Management']
+            },
+            {
+                title: 'User Management System',
+                description: 'Ensured a bug-free implementation for a system that became the parent platform for 14 downstream software products.',
+                tags: ['angular', 'full-stack'],
+                tech: ['Angular', 'CI/CD', 'IT Service Management']
+            },
+            {
+                title: 'E-learning Platform',
+                description: 'Built critical modules such as Academy, Teacher, and Student Dashboards, improving usability and engagement across the platform.',
+                tags: ['angular', 'full-stack', 'node.js'],
+                tech: ['Angular', 'Node.js', 'MongoDB', 'Express.js']
+            },
+            {
+                title: 'Customer Core System',
+                description: 'Developed and maintained core modules like Invoice, Company, and User Management within this business-critical project.',
+                tags: ['angular', 'full-stack', 'node.js'],
+                tech: ['Angular', 'Node.js', 'MongoDB', 'Express.js']
+            },
+            {
+                title: 'Electronic Equipment Services',
+                description: 'Developed key modules and core functionalities, contributing to the project\'s overall efficiency and performance.',
+                tags: ['angular', 'full-stack', 'node.js'],
+                tech: ['AWS', 'Angular', 'Node.js', 'MySQL']
+            },
+            {
+                title: 'Health and Data Software Product',
+                description: 'Fixed critical bugs and optimized performance for a healthcare product used by the NHS, improving stability and data flow.',
+                tags: ['angular'],
+                tech: ['Angular', 'Performance Tuning', 'Debugging']
+            },
+            {
+                title: 'Chat Room App',
+                description: 'Built a real-time chat application using HTML/CSS/JS for the frontend, and Node.js with Socket.io for the backend.',
+                tags: ['node.js'],
+                tech: ['Node.js', 'Socket.io', 'JavaScript', 'HTML/CSS']
+            },
+            {
+                title: 'Rental Movies App',
+                description: 'Created a movie rental app with user roles, CRUD operations, and JWT-based authentication.',
+                tags: ['node.js'],
+                tech: ['Node.js', 'MongoDB', 'JWT', 'Express.js']
+            },
+            {
+                title: 'Virtual Car Simulation (AR)',
+                description: 'Engineered an Augmented Reality game in Unity to simulate a car in the real world, demonstrating AR concepts.',
+                tags: [],
+                tech: ['C#', 'Unity 3D', 'AR Foundation']
+            }
+        ];
+
+        const experienceData = [
+            {
+                role: 'Software Engineer',
+                company: 'HiveWorx, Islamabad',
+                period: 'Jan 2023 – Sep 2023',
+                details: 'Led development of a core user management system and built a virtual hospital application, focusing on frontend logic, security, and integration for over 14 products.'
+            },
+            {
+                role: 'MEAN Stack Developer',
+                company: 'SH Solutions, Islamabad',
+                period: 'Oct 2022 – Dec 2022',
+                details: 'Developed key modules for an electronic equipment services project, focusing on core backend functionalities, RESTful APIs and database schemas.'
+            },
+            {
+                role: 'MEAN Stack Developer',
+                company: 'AlfaOrigin, Rawalpindi',
+                period: 'Jun 2022 – Sep 2022',
+                details: 'Developed modules for an e-learning platform and a customer management system, contributing to both frontend and backend aspects of the applications.'
+            }
+        ];
+
+        // --- MOBILE MENU ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // --- PROJECTS ---
+        const projectsGrid = document.getElementById('projects-grid');
+        const filterButtons = document.querySelectorAll('.project-filter-btn');
+
+        function populateProjects(filter = 'all') {
+            projectsGrid.innerHTML = '';
+            const filteredProjects = filter === 'all'
+                ? projectsData
+                : projectsData.filter(p => p.tags.includes(filter));
+
+            filteredProjects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card bg-white rounded-xl overflow-hidden fade-in-up';
+                
+                const tagsHTML = project.tech.map(tag => `<span class="font-mono text-xs bg-gray-100 text-gray-600 mr-2 mb-2 px-2.5 py-1 rounded">${tag}</span>`).join('');
+
+                projectCard.innerHTML = `
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${project.title}</h3>
+                        <p class="text-gray-600 mb-4 h-24">${project.description}</p>
+                        <div class="flex flex-wrap pt-4 border-t border-gray-100">${tagsHTML}</div>
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+            // Re-observe for animations
+            observeFadeInElements();
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                populateProjects(button.dataset.filter);
+            });
+        });
+
+        populateProjects();
+
+        // --- EXPERIENCE ---
+        const experienceTimeline = document.querySelector('#experience .relative');
+        experienceData.forEach((item, index) => {
+            const timelineItem = document.createElement('div');
+            timelineItem.className = 'relative pl-10 pb-10 fade-in-up';
+            // Add vertical line, but not for the last item
+            if (index < experienceData.length - 1) {
+                 timelineItem.innerHTML += `<div class="absolute left-2.5 top-3 h-full w-0.5 bg-gray-200"></div>`;
+            }
+            timelineItem.innerHTML += `
+                <div class="absolute left-0 top-1 w-5 h-5 bg-violet-500 rounded-full border-4 border-white"></div>
+                <div>
+                    <p class="text-sm font-semibold text-violet-500">${item.period}</p>
+                    <h3 class="text-xl font-bold text-gray-800">${item.role}</h3>
+                    <p class="font-semibold text-gray-500">${item.company}</p>
+                    <p class="mt-2 text-gray-600">${item.details}</p>
+                </div>
+            `;
+            experienceTimeline.appendChild(timelineItem);
+        });
+        
+        // --- SCROLL-BASED ANIMATIONS AND NAV HIGHLIGHTING ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        function observeFadeInElements() {
+            const fadeInElements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeInElements.forEach(el => observer.observe(el));
+        }
+
+        const navObserver = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -60% 0px' });
+        
+        sections.forEach(section => navObserver.observe(section));
+        observeFadeInElements();
+
+    });
+    </script>
+</body>
+</html>
